@@ -18,7 +18,7 @@ public class CatController {
     @Autowired
     private SpringService service;
 
-    @GetMapping("/getall")
+    @GetMapping("/get-all")
     public List<CatDTO> getAllCats() {
         return service.getAllCats();
     }
@@ -42,7 +42,7 @@ public class CatController {
         }
     }
 
-    @PostMapping("/addtoowner/{id}")
+    @PostMapping("/add-to-owner/{id}")
     public boolean addToOwner(@RequestBody CatDTO catDTO, @PathVariable("id") String ownerId) throws ControllerException {
         try {
             return service.addCatToOwner(catDTO, Long.valueOf(ownerId));
@@ -51,7 +51,7 @@ public class CatController {
         }
     }
 
-    @DeleteMapping("/removefromowner/{id}")
+    @DeleteMapping("/remove-from-owner/{id}")
     public boolean removeFromOwner(@RequestBody CatDTO catDTO, @PathVariable("id") String ownerId) throws ControllerException {
         try {
             return service.removeCatFromOwner(catDTO, Long.valueOf(ownerId));
@@ -60,7 +60,7 @@ public class CatController {
         }
     }
 
-    @GetMapping("getbycolor/{color}")
+    @GetMapping("get-by-color/{color}")
     public List<CatDTO> getByColor(@PathVariable("color") String color) {
         try {
             return service.getCatsByColor(Color.valueOf(color));
@@ -69,7 +69,7 @@ public class CatController {
         }
     }
 
-    @PostMapping("/makefriends/{id}")
+    @PostMapping("/make-friends/{id}")
     public boolean makeFriendship(@RequestBody CatDTO firstCatDTO, @PathVariable("id") String secondCatId) throws ControllerException {
         try {
             return service.makeFriendship(firstCatDTO, Long.valueOf(secondCatId));
@@ -78,7 +78,7 @@ public class CatController {
         }
     }
 
-    @DeleteMapping("/breakfriends/{id}")
+    @DeleteMapping("/break-friends/{id}")
     public boolean breakFriendship(@RequestBody CatDTO firstCatDTO, @PathVariable("id") String secondCatId) throws ControllerException {
         try {
             return service.breakFriendship(firstCatDTO, Long.valueOf(secondCatId));

@@ -15,7 +15,7 @@ public class OwnerController {
     @Autowired
     private SpringService service;
 
-    @GetMapping("/getall")
+    @GetMapping("/get-all")
     public List<OwnerDTO> getAllOwner(){
         return service.getAllOwners();
     }

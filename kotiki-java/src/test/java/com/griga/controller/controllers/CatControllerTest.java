@@ -19,7 +19,7 @@ class CatControllerTest {
 
     @Test
     void getByColor_ThrowsException() throws Exception {
-        String url = "http://localhost:8080/cat/getbycolor/Red";
+        String url = "http://localhost:8080/cat/get-by-color/Red";
         mockMvc.perform(get(url)).andExpect(status().is4xxClientError());
     }
 }

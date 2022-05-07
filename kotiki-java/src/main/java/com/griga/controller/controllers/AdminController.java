@@ -7,7 +7,6 @@ import com.griga.dto.OwnerDto;
 import com.griga.service.services.CatService;
 import com.griga.service.services.OwnerService;
 import com.griga.service.tools.ServiceException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,10 +16,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    private OwnerService ownerService;
-    @Autowired
-    private CatService catService;
+    private final OwnerService ownerService;
+    private final CatService catService;
+
+    public AdminController(OwnerService ownerService, CatService catService) {
+        this.ownerService = ownerService;
+        this.catService = catService;
+    }
 
     @GetMapping()
     public String page() {

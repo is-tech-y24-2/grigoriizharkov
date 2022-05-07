@@ -17,10 +17,13 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/owner")
 public class OwnerController {
-    @Autowired
-    private OwnerService ownerService;
-    @Autowired
-    private CatService catService;
+    private final OwnerService ownerService;
+    private final CatService catService;
+
+    public OwnerController(OwnerService ownerService, CatService catService) {
+        this.ownerService = ownerService;
+        this.catService = catService;
+    }
 
     @GetMapping()
     public String page() {

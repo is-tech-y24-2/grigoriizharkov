@@ -16,10 +16,13 @@ import java.util.Objects;
 
 @Service
 public class OwnerService {
-    @Autowired
-    private OwnerRepository owner;
-    @Autowired
-    private OwnersCatsRepository ownersCats;
+    private final OwnerRepository owner;
+    private final OwnersCatsRepository ownersCats;
+
+    public OwnerService(OwnerRepository owner, OwnersCatsRepository ownersCats) {
+        this.owner = owner;
+        this.ownersCats = ownersCats;
+    }
 
     public boolean addOwner(OwnerDto ownerDto) throws ServiceException {
         if (ownerDto == null) throw new ServiceException("Owner can not be null!");

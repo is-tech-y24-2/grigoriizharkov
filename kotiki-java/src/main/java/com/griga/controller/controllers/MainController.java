@@ -4,16 +4,18 @@ import com.griga.controller.tools.ControllerException;
 import com.griga.dto.OwnerDto;
 import com.griga.service.services.OwnerService;
 import com.griga.service.tools.ServiceException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("mainController")
+@RestController
 public class MainController {
-    @Autowired
-    private OwnerService service;
+    private final OwnerService service;
+
+    public MainController(OwnerService service) {
+        this.service = service;
+    }
 
     @GetMapping("/")
     public String home(){

@@ -19,12 +19,15 @@ import java.util.Optional;
 
 @Service
 public class CatService {
-    @Autowired
-    private CatRepository cat;
-    @Autowired
-    private CatsFriendsRepository catsFriends;
-    @Autowired
-    private OwnersCatsRepository ownersCats;
+    private final CatRepository cat;
+    private final CatsFriendsRepository catsFriends;
+    private final OwnersCatsRepository ownersCats;
+
+    public CatService(CatRepository cat, CatsFriendsRepository catsFriends, OwnersCatsRepository ownersCats) {
+        this.cat = cat;
+        this.catsFriends = catsFriends;
+        this.ownersCats = ownersCats;
+    }
 
     public boolean addCat(CatDto catDto) throws ServiceException {
         if (catDto == null) throw new ServiceException("Cat can not be null!");

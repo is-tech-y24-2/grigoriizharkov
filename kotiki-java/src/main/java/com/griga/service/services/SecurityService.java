@@ -18,8 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class SecurityService implements UserDetailsService {
 
-    @Autowired
-    private OwnerService service;
+    private final OwnerService service;
+
+    public SecurityService(OwnerService service) {
+        this.service = service;
+    }
 
     @Override
     @Transactional

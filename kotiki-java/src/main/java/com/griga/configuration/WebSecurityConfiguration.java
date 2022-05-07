@@ -1,7 +1,6 @@
 package com.griga.configuration;
 
 import com.griga.service.services.SecurityService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,8 +13,11 @@ import org.springframework.stereotype.Component;
 @EnableWebSecurity
 @Component
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-    @Autowired
-    SecurityService userSecurityService;
+    final SecurityService userSecurityService;
+
+    public WebSecurityConfiguration(SecurityService userSecurityService) {
+        this.userSecurityService = userSecurityService;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

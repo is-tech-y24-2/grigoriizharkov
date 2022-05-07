@@ -29,14 +29,14 @@ public class SecurityService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Owner doesn't exist");
         }
-        return mapUserBDtoUserDetails(user);
+        return mapUserToUserDetails(user);
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<String> roles){
         return roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
-    private User mapUserBDtoUserDetails(OwnerDto ownerDTO) {
+    private User mapUserToUserDetails(OwnerDto ownerDTO) {
         return new User(ownerDTO.getUsername(), ownerDTO.getPassword(), mapRolesToAuthorities(List.of(ownerDTO.getRole())));
     }
 }

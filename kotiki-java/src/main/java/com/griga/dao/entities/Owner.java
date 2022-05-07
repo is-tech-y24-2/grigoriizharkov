@@ -19,6 +19,15 @@ public class Owner {
     @Basic
     @Column(name = "birthdate")
     private Timestamp birthdate;
+    @Basic
+    @Column(name = "username")
+    private String username;
+    @Basic
+    @Column(name = "password")
+    private String password;
+    @Basic
+    @Column(name = "role")
+    private String role;
 
     public Owner() {
 
@@ -27,6 +36,9 @@ public class Owner {
     public Owner(OwnerDTO ownerDTO) {
         name = ownerDTO.getName();
         birthdate = ownerDTO.getBirthdate();
+        username = ownerDTO.getUsername();
+        password = ownerDTO.getPassword();
+        role = ownerDTO.getRole();
     }
 
     public Long getId() {
@@ -51,6 +63,28 @@ public class Owner {
 
     public void setBirthdate(Timestamp birthdate) {
         this.birthdate = birthdate;
+    }public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

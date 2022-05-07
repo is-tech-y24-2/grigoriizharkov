@@ -8,6 +8,9 @@ public class OwnerDTO {
     private Long id;
     private String name;
     private Timestamp birthdate;
+    private String username;
+    private String password;
+    private String role;
 
     public OwnerDTO() {
 
@@ -17,6 +20,9 @@ public class OwnerDTO {
         id = owner.getId();
         name = owner.getName();
         birthdate = owner.getBirthdate();
+        username = owner.getUsername();
+        password = owner.getPassword();
+        role = owner.getRole();
     }
 
     public Long getId() {
@@ -41,5 +47,29 @@ public class OwnerDTO {
 
     public void setBirthdate(Timestamp birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

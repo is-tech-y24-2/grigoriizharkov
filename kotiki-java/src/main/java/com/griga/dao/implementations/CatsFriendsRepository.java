@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CatsFriendsRepository extends JpaRepository<CatsFriends, Long> {
-
+    void deleteAllByFirstCatId(Long firstCatId);
+    void deleteAllBySecondCatId(Long secondCatId);
+    void deleteAllByFirstCatIdAndSecondCatId(Long firstCatId, Long secondCatId);
 }

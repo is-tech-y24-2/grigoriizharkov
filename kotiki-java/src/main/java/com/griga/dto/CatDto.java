@@ -5,18 +5,18 @@ import com.griga.dao.entities.Cat;
 
 import java.sql.Timestamp;
 
-public class CatDTO {
+public class CatDto {
     private Long id;
     private String name;
     private Timestamp birthdate;
     private String species;
     private Color color;
 
-    public CatDTO() {
+    public CatDto() {
 
     }
 
-    public CatDTO(Cat cat) {
+    public CatDto(Cat cat) {
         id = cat.getId();
         name = cat.getName();
         birthdate = cat.getBirthdate();
@@ -64,3 +64,4 @@ public class CatDTO {
         this.color = color;
     }
 }
+

@@ -1,7 +1,7 @@
 package com.griga.dao.entities;
 
 import com.griga.dao.colors.Color;
-import com.griga.dto.CatDTO;
+import com.griga.dto.CatDto;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -32,11 +32,11 @@ public class Cat {
     public Cat() {
     }
 
-    public Cat(CatDTO catDTO) {
-        name = catDTO.getName();
-        birthdate = catDTO.getBirthdate();
-        species = catDTO.getSpecies();
-        color = catDTO.getColor();
+    public Cat(CatDto catDto) {
+        name = catDto.getName();
+        birthdate = catDto.getBirthdate();
+        species = catDto.getSpecies();
+        color = catDto.getColor();
     }
 
     public Long getId() {

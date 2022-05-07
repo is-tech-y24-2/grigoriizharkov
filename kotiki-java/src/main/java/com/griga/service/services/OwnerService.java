@@ -4,9 +4,9 @@ import com.griga.dao.entities.Owner;
 import com.griga.dao.entities.OwnersCats;
 import com.griga.dao.implementations.OwnerRepository;
 import com.griga.dao.implementations.OwnersCatsRepository;
-import com.griga.dto.CatDTO;
-import com.griga.dto.OwnerDTO;
-import com.griga.dto.OwnersCatsDTO;
+import com.griga.dto.CatDto;
+import com.griga.dto.OwnerDto;
+import com.griga.dto.OwnersCatsDto;
 import com.griga.service.tools.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +21,13 @@ public class OwnerService {
     @Autowired
     private OwnersCatsRepository ownersCats;
 
-    public boolean addOwner(OwnerDTO ownerDTO) throws ServiceException {
-        if (ownerDTO == null) throw new ServiceException("Owner can not be null!");
-        if (Objects.equals(ownerDTO.getRole(), "ROLE_ADMIN")) {
+    public boolean addOwner(OwnerDto ownerDto) throws ServiceException {
+        if (ownerDto == null) throw new ServiceException("Owner can not be null!");
+        if (Objects.equals(ownerDto.getRole(), "ROLE_ADMIN")) {
             throw new ServiceException("It is impossible to add admin!");
         }
 
-        owner.save(new Owner(ownerDTO));
+        owner.save(new Owner(ownerDto));
 
         return true;
     }
@@ -39,24 +39,24 @@ public class OwnerService {
         return true;
     }
 
-    public boolean addCat(CatDTO catDTO, Long ownerId) throws ServiceException {
-        if (catDTO == null) throw new ServiceException("Cat can not be null!");
+    public boolean addCat(CatDto catDto, Long ownerId) throws ServiceException {
+        if (catDto == null) throw new ServiceException("Cat can not be null!");
 
-        List<OwnersCatsDTO> ownersAndCats = ownersCats.findAllByCatIdAndOwnerId(catDTO.getId(), ownerId);
+        List<OwnersCatsDto> ownersAndCats = ownersCats.findAllByCatIdAndOwnerId(catDto.getId(), ownerId);
         if (!ownersAndCats.isEmpty()) {
             throw new ServiceException("Such owner-cat pair already exist!");
         }
 
-        OwnersCatsDTO ownersCatsDTO = new OwnersCatsDTO();
+        OwnersCatsDto ownersCatsDTO = new OwnersCatsDto();
         ownersCatsDTO.setOwnerId(ownerId);
-        ownersCatsDTO.setCatId(catDTO.getId());
+        ownersCatsDTO.setCatId(catDto.getId());
 
         ownersCats.save(new OwnersCats(ownersCatsDTO));
 
         return true;
     }
 
-    public boolean removeCat(CatDTO catDTO, Long ownerId) throws ServiceException {
+    public boolean removeCat(CatDto catDTO, Long ownerId) throws ServiceException {
         if (catDTO == null) throw new ServiceException("Cat can not be null!");
 
         ownersCats.deleteAllByCatIdAndOwnerId(catDTO.getId(), ownerId);
@@ -64,11 +64,11 @@ public class OwnerService {
         return true;
     }
 
-    public List<OwnerDTO> findAllOwners() {
-        return owner.findAll().stream().map(OwnerDTO::new).toList();
+    public List<OwnerDto> findAllOwners() {
+        return owner.findAll().stream().map(OwnerDto::new).toList();
     }
 
-    public OwnerDTO findUserByUsername(String username) {
+    public OwnerDto findUserByUsername(String username) {
         return owner.findByUsername(username);
     }
 

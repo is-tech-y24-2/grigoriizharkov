@@ -2,16 +2,16 @@ package com.griga.dto;
 
 import com.griga.dao.entities.OwnersCats;
 
-public class OwnersCatsDTO {
+public class OwnersCatsDto {
     private Long id;
     private Long ownerId;
     private Long catId;
 
-    public OwnersCatsDTO() {
+    public OwnersCatsDto() {
 
     }
 
-    public OwnersCatsDTO(OwnersCats ownersCats) {
+    public OwnersCatsDto(OwnersCats ownersCats) {
         id = ownersCats.getId();
         ownerId = ownersCats.getOwnerId();
         catId = ownersCats.getCatId();

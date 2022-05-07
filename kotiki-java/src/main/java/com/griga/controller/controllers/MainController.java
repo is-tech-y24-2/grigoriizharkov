@@ -1,7 +1,7 @@
 package com.griga.controller.controllers;
 
 import com.griga.controller.tools.ControllerException;
-import com.griga.dto.OwnerDTO;
+import com.griga.dto.OwnerDto;
 import com.griga.service.services.OwnerService;
 import com.griga.service.tools.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class MainController {
     }
 
     @PostMapping("/registration")
-    public void registration(@RequestBody OwnerDTO owner) throws ControllerException {
+    public void registration(@RequestBody OwnerDto owner) throws ControllerException {
         try {
             service.addOwner(owner);
         } catch (ServiceException e) {

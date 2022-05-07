@@ -1,6 +1,6 @@
 package com.griga.dao.entities;
 
-import com.griga.dto.OwnerDTO;
+import com.griga.dto.OwnerDto;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -33,12 +33,12 @@ public class Owner {
 
     }
 
-    public Owner(OwnerDTO ownerDTO) {
-        name = ownerDTO.getName();
-        birthdate = ownerDTO.getBirthdate();
-        username = ownerDTO.getUsername();
-        password = ownerDTO.getPassword();
-        role = ownerDTO.getRole();
+    public Owner(OwnerDto ownerDto) {
+        name = ownerDto.getName();
+        birthdate = ownerDto.getBirthdate();
+        username = ownerDto.getUsername();
+        password = ownerDto.getPassword();
+        role = ownerDto.getRole();
     }
 
     public Long getId() {

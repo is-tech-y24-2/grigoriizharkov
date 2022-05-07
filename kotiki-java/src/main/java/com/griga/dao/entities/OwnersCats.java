@@ -1,6 +1,6 @@
 package com.griga.dao.entities;
 
-import com.griga.dto.OwnersCatsDTO;
+import com.griga.dto.OwnersCatsDto;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -23,9 +23,9 @@ public class OwnersCats {
 
     }
 
-    public OwnersCats(OwnersCatsDTO ownersCatsDTO) {
-        ownerId = ownersCatsDTO.getOwnerId();
-        catId = ownersCatsDTO.getCatId();
+    public OwnersCats(OwnersCatsDto ownersCatsDto) {
+        ownerId = ownersCatsDto.getOwnerId();
+        catId = ownersCatsDto.getCatId();
     }
 
     public Long getId() {

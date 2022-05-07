@@ -4,7 +4,7 @@ import com.griga.dao.entities.Owner;
 
 import java.sql.Timestamp;
 
-public class OwnerDTO {
+public class OwnerDto {
     private Long id;
     private String name;
     private Timestamp birthdate;
@@ -12,11 +12,11 @@ public class OwnerDTO {
     private String password;
     private String role;
 
-    public OwnerDTO() {
+    public OwnerDto() {
 
     }
 
-    public OwnerDTO(Owner owner) {
+    public OwnerDto(Owner owner) {
         id = owner.getId();
         name = owner.getName();
         birthdate = owner.getBirthdate();

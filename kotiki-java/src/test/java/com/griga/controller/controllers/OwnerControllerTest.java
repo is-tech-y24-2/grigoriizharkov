@@ -7,8 +7,8 @@ import com.griga.dao.implementations.CatRepository;
 import com.griga.dao.implementations.CatsFriendsRepository;
 import com.griga.dao.implementations.OwnerRepository;
 import com.griga.dao.implementations.OwnersCatsRepository;
-import com.griga.dto.CatDTO;
-import com.griga.dto.OwnerDTO;
+import com.griga.dto.CatDto;
+import com.griga.dto.OwnerDto;
 import com.griga.service.services.CatService;
 import com.griga.service.services.OwnerService;
 import com.griga.service.services.SecurityService;
@@ -54,7 +54,7 @@ class OwnerControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static OwnerDTO ownerDTO;
+    private static OwnerDto ownerDto;
 
     @BeforeEach
     public void setUp() {
@@ -64,12 +64,12 @@ class OwnerControllerTest {
         owner.setRole("ROLE_USER");
         owner.setId(1L);
 
-        ownerDTO = new OwnerDTO(owner);
+        ownerDto = new OwnerDto(owner);
 
-        Mockito.when(securityService.loadUserByUsername("lexa")).thenReturn(new User(ownerDTO.getUsername(), ownerDTO.getPassword(),
-                Stream.of(ownerDTO.getRole()).map(SimpleGrantedAuthority::new).collect(Collectors.toList())));
-        Mockito.when(ownerService.findUserByUsername("lexa")).thenReturn(ownerDTO);
-        Mockito.when(ownerRepository.findByUsername("lexa")).thenReturn(ownerDTO);
+        Mockito.when(securityService.loadUserByUsername("lexa")).thenReturn(new User(ownerDto.getUsername(), ownerDto.getPassword(),
+                Stream.of(ownerDto.getRole()).map(SimpleGrantedAuthority::new).collect(Collectors.toList())));
+        Mockito.when(ownerService.findUserByUsername("lexa")).thenReturn(ownerDto);
+        Mockito.when(ownerRepository.findByUsername("lexa")).thenReturn(ownerDto);
     }
 
     @Test
@@ -92,11 +92,11 @@ class OwnerControllerTest {
         cat.setBirthdate(Timestamp.valueOf("2021-01-12 00:00:00"));
         cat.setSpecies("basic");
         cat.setId(1L);
-        CatDTO catDTO = new CatDTO(cat);
-        Mockito.when(ownerService.findUserByUsername("lexa")).thenReturn(ownerDTO);
-        Mockito.when(catService.findAllCatsByOwnerId(1L)).thenReturn(List.of(catDTO));
-        Mockito.when(ownerRepository.findByUsername("lexa")).thenReturn(ownerDTO);
-        Mockito.when(catRepository.findAllByColor(Color.Black)).thenReturn(List.of(catDTO));
+        CatDto catDto = new CatDto(cat);
+        Mockito.when(ownerService.findUserByUsername("lexa")).thenReturn(ownerDto);
+        Mockito.when(catService.findAllCatsByOwnerId(1L)).thenReturn(List.of(catDto));
+        Mockito.when(ownerRepository.findByUsername("lexa")).thenReturn(ownerDto);
+        Mockito.when(catRepository.findAllByColor(Color.Black)).thenReturn(List.of(catDto));
         String url = "http://localhost:8080/owner/find-cats-by-color/Black";
         this.mockMvc
                 .perform(MockMvcRequestBuilders

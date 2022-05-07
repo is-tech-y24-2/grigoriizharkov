@@ -1,6 +1,6 @@
 package com.griga.service.services;
 
-import com.griga.dto.OwnerDTO;
+import com.griga.dto.OwnerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +24,7 @@ public class SecurityService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        OwnerDTO user = service.findUserByUsername(username);
+        OwnerDto user = service.findUserByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("Owner doesn't exist");
@@ -36,7 +36,7 @@ public class SecurityService implements UserDetailsService {
         return roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
-    private User mapUserBDtoUserDetails(OwnerDTO ownerDTO) {
+    private User mapUserBDtoUserDetails(OwnerDto ownerDTO) {
         return new User(ownerDTO.getUsername(), ownerDTO.getPassword(), mapRolesToAuthorities(List.of(ownerDTO.getRole())));
     }
 }

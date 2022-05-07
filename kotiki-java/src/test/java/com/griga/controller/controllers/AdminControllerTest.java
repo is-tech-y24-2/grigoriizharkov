@@ -7,8 +7,8 @@ import com.griga.dao.implementations.CatRepository;
 import com.griga.dao.implementations.CatsFriendsRepository;
 import com.griga.dao.implementations.OwnerRepository;
 import com.griga.dao.implementations.OwnersCatsRepository;
-import com.griga.dto.CatDTO;
-import com.griga.dto.OwnerDTO;
+import com.griga.dto.CatDto;
+import com.griga.dto.OwnerDto;
 import com.griga.service.services.CatService;
 import com.griga.service.services.OwnerService;
 import com.griga.service.services.SecurityService;
@@ -61,12 +61,12 @@ class AdminControllerTest {
         owner.setPassword(new BCryptPasswordEncoder().encode("0000"));
         owner.setRole("ROLE_ADMIN");
 
-        OwnerDTO ownerDTO = new OwnerDTO(owner);
+        OwnerDto ownerDto = new OwnerDto(owner);
 
-        Mockito.when(securityService.loadUserByUsername("griga")).thenReturn(new User(ownerDTO.getUsername(), ownerDTO.getPassword(),
-                Stream.of(ownerDTO.getRole()).map(SimpleGrantedAuthority::new).collect(Collectors.toList())));
-        Mockito.when(ownerService.findUserByUsername("griga")).thenReturn(ownerDTO);
-        Mockito.when(ownerRepository.findByUsername("griga")).thenReturn(ownerDTO);
+        Mockito.when(securityService.loadUserByUsername("griga")).thenReturn(new User(ownerDto.getUsername(), ownerDto.getPassword(),
+                Stream.of(ownerDto.getRole()).map(SimpleGrantedAuthority::new).collect(Collectors.toList())));
+        Mockito.when(ownerService.findUserByUsername("griga")).thenReturn(ownerDto);
+        Mockito.when(ownerRepository.findByUsername("griga")).thenReturn(ownerDto);
 
     }
 
@@ -90,8 +90,8 @@ class AdminControllerTest {
         cat.setBirthdate(Timestamp.valueOf("2021-01-12 00:00:00"));
         cat.setSpecies("basic");
         cat.setId(1L);
-        CatDTO catDTO = new CatDTO(cat);
-        Mockito.when(catService.findAllCats()).thenReturn(List.of(catDTO));
+        CatDto catDto = new CatDto(cat);
+        Mockito.when(catService.findAllCats()).thenReturn(List.of(catDto));
         Mockito.when(catRepository.findAll()).thenReturn(List.of(cat));
         String url = "http://localhost:8080/admin/find-all-cats";
         this.mockMvc
